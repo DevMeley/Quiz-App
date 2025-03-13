@@ -1,0 +1,24 @@
+.logo {
+    font-style: italic;
+    font-size: 32px;
+    color: white;
+  }
+  .span {
+    color: rgb(14, 209, 209);
+  }
+
+  .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 300px;
+    margin-top: 20px;
+    border: 2px solid rgb(185, 185, 185);
+    padding: 16px 32px;
+    border-radius: 42px;
+  }  
+  .home{
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+  }
