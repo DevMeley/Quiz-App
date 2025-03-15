@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Components/Category.css";
 import { data } from "react-router-dom";
 
-const URL =
-  "https://opentdb.com/api.php?amount=20&category=9&difficulty=medium&type=multiple";
+const URL = "https://opentdb.com/api.php?amount=10&category=17";
 
 function Category({ catId }) {
   console.log(catId);
@@ -29,7 +28,7 @@ function Category({ catId }) {
               } seconds...`
             );
             await new Promise((resolve) =>
-              setTimeout(resolve, (retryCount + 1) * 3000)
+              setTimeout(resolve, (retryCount + 1) * 1000)
             );
             return fetchQuestions(retryCount + 1);
           }
