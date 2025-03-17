@@ -3,18 +3,25 @@ import "../Components/Category.css";
 import { data } from "react-router-dom";
 
 const URL = "https://opentdb.com/api.php?amount=10&category=17";
+const URL2 = "https://opentdb.com/api.php?amount=10&category=25";
+const URL3 = "https://opentdb.com/api.php?amount=10&category=23";
+const URL4 = "https://opentdb.com/api.php?amount=10&category=18";
 
 function Category({ catId }) {
   console.log(catId);
 
   // const [index, setIndex] = useState(0)
   const [questions, setQuestions] = useState([]);
+  const [ArtQuestions, setArtQuestions] = useState([]);
+  const [HistQuestions, setHistQuestions] = useState([]);
+  const [TechQuestions, setTechQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedOption, setSelectedOption] = useState(null);
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState("");
 
+  // API fetch for science questions
   useEffect(() => {
     const fetchQuestions = async (retryCount = 0) => {
       try {
@@ -44,6 +51,102 @@ function Category({ catId }) {
     };
 
     fetchQuestions();
+  }, []);
+
+  // API fecth for Art questions
+  useEffect(() => {
+    const fetchArtQuestions = async (retryCount = 0) => {
+      try {
+        const res = await fetch(`${URL2}`);
+
+        if (!res.ok) {
+          if (res.status === 429 && retryCount < 3) {
+            console.log(
+              `Rate limited (429). Retrying in ${
+                (retryCount + 1) * 3
+              } seconds...`
+            );
+            await new Promise((resolve) =>
+              setTimeout(resolve, (retryCount + 1) * 1000)
+            );
+            return fetchArtQuestions(retryCount + 1);
+          }
+          throw new Error(`API responded with status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        console.log(data);
+        setArtQuestions(data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchArtQuestions();
+  }, []);
+
+  // API fetch for History questions
+  useEffect(() => {
+    const fetchHistQuestions = async (retryCount = 0) => {
+      try {
+        const res = await fetch(`${URL3}`);
+
+        if (!res.ok) {
+          if (res.status === 429 && retryCount < 3) {
+            console.log(
+              `Rate limited (429). Retrying in ${
+                (retryCount + 1) * 3
+              } seconds...`
+            );
+            await new Promise((resolve) =>
+              setTimeout(resolve, (retryCount + 1) * 1000)
+            );
+            return fetchHistQuestions(retryCount + 1);
+          }
+          throw new Error(`API responded with status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        console.log(data);
+        setHistQuestions(data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchHistQuestions();
+  }, []);
+
+  // API fetch for Technology questions
+  useEffect(() => {
+    const fetchTechQuestions = async (retryCount = 0) => {
+      try {
+        const res = await fetch(`${URL4}`);
+
+        if (!res.ok) {
+          if (res.status === 429 && retryCount < 3) {
+            console.log(
+              `Rate limited (429). Retrying in ${
+                (retryCount + 1) * 3
+              } seconds...`
+            );
+            await new Promise((resolve) =>
+              setTimeout(resolve, (retryCount + 1) * 1000)
+            );
+            return fetchTechQuestions(retryCount + 1);
+          }
+          throw new Error(`API responded with status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        console.log(data);
+        setTechQuestions(data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchTechQuestions();
   }, []);
 
   useEffect(() => {

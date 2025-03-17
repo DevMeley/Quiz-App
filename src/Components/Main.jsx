@@ -19,7 +19,7 @@ function Main({ setCatId }) {
     },
     {
       id: "3",
-      category: "Economics",
+      category: "History",
       image: "public/download.jpeg",
       Level: "medium",
       Type: "Multiple Choice",
