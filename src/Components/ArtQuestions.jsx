@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import LoadingState from "./LoadingState";
 
 const URL2 = "https://opentdb.com/api.php?amount=10&category=25";
 
@@ -8,7 +9,7 @@ function ArtQuestions() {
   const [selectedOption, setSelectedOption] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [options, setOptions] = useState([]);
-  const [score, setScore] = useState("");
+  const [score, setScore] = useState(0);
 
   // API fecth for Art questions
   useEffect(() => {
@@ -70,20 +71,26 @@ function ArtQuestions() {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     if (option === ArtQuestions[currentIndex].correct_answer) {
-      setScore("correct");
+      setScore(score + 1);
+      handleNextQuestion()
+    }
+    else{
+    handleNextQuestion()
     }
   };
+
+  
 
   return (
     <div>
       <>
         {!isLoading ? (
-          <p>Loading...</p>
+          <LoadingState />
         ) : (
           <>
-            {score}
             <div className="up">
               <div className="timer">ggg</div>
+              Score: {score}
               <div className="number">
                 {currentIndex + 1}/{ArtQuestions.length}
               </div>
@@ -96,6 +103,7 @@ function ArtQuestions() {
                   <p onClick={() => handleOptionClick(option)} key={index}>
                     {option}
                   </p>
+                  
                 ))}
               </div>
               <button className="next" onClick={handleNextQuestion}>

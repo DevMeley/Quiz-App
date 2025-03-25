@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import LoadingState from './LoadingState';
 
 
 const URL4 = "https://opentdb.com/api.php?amount=10&category=18";
@@ -12,7 +13,7 @@ function TechQuestion() {
     const [options, setOptions] = useState([]);
     const [score, setScore] = useState("");
 
-    
+
       // API fetch for Technology questions
         useEffect(() => {
           const fetchTechQuestions = async (retryCount = 0) => {
@@ -74,19 +75,22 @@ function TechQuestion() {
       const handleOptionClick = (option) => {
         setSelectedOption(option);
         if (option === TechQuestions[currentIndex].correct_answer) {
-          setScore("correct");
+          setScore(score + 1);
+          handleNextQuestion()
+        } else{
+            handleNextQuestion()
         }
       };
   return (
     <div>
         <>
         {!isLoading ? (
-          <p>Loading...</p>
+          <LoadingState />
         ) : (
           <>
-            {score}
             <div className="up">
               <div className="timer">ggg</div>
+              Score: {score}
               <div className="number">
                 {currentIndex + 1}/{TechQuestions.length}
               </div>

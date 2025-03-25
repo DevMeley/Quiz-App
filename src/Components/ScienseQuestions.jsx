@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import LoadingState from "./LoadingState";
 
 const URL = "https://opentdb.com/api.php?amount=10&category=17";
 
@@ -8,7 +9,8 @@ function ScienseQuestions() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [options, setOptions] = useState([]);
-  const [score, setScore] = useState("");
+  const [score, setScore] = useState(0);
+  const [completed, setCompleted] = useState(false);
 
   // API fetch for science questions
   useEffect(() => {
@@ -61,45 +63,58 @@ function ScienseQuestions() {
   const handleNextQuestion = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
-      selectedOption(null);
+      setSelectedOption(null);
     } else {
-      console.log("Quiz completed");
+      setCompleted(true);
     }
   };
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     if (option === questions[currentIndex].correct_answer) {
-      setScore("correct");
+      setScore(score + 1);
+      setTimeout(handleNextQuestion, 1000);
+    } else {
+      setTimeout(handleNextQuestion, 1000);
     }
   };
 
   return (
     <div>
       {!isLoading ? (
-        <p>Loading...</p>
+        <LoadingState />
       ) : (
         <>
-          {score}
           <div className="up">
             <div className="timer">ggg</div>
+            Score: {score}
             <div className="number">
               {currentIndex + 1}/{questions.length}
             </div>
           </div>
 
           <div className="container">
-            <p>{questions[currentIndex].question}</p>
-            <div className="options">
-              {options.map((option, index) => (
-                <p onClick={() => handleOptionClick(option)} key={index}>
-                  {option}
-                </p>
-              ))}
-            </div>
-            <button className="next" onClick={handleNextQuestion}>
-              Next
-            </button>
+            {!completed ? (
+              <>
+                <p>{questions[currentIndex].question}</p>
+                <div className="options">
+                  {options.map((option, index) => (
+                    <p onClick={() => handleOptionClick(option)} key={index}>
+                      {option}
+                    </p>
+                  ))}
+                </div>
+                <button className="next" onClick={handleNextQuestion}>
+                    Next
+                </button>
+              </>
+            ) : (
+                <div>
+                    <p>Completed your score is {score}</p>
+                    <button className="next">Return home</button>
+                </div>
+              
+            )}
           </div>
         </>
       )}
