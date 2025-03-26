@@ -8,8 +8,7 @@
   background-image: linear-gradient(to right, #283048, #859398);
 }
 body{
+  
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
 }

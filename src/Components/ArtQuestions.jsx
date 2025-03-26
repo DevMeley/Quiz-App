@@ -10,6 +10,8 @@ function ArtQuestions() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [options, setOptions] = useState([]);
   const [score, setScore] = useState(0);
+  const [completed, setCompleted] = useState(false);
+  const [isCorrect, setIsCorret] = useState(false);
 
   // API fecth for Art questions
   useEffect(() => {
@@ -62,9 +64,9 @@ function ArtQuestions() {
   const handleNextQuestion = () => {
     if (currentIndex < ArtQuestions.length - 1) {
       setCurrentIndex(currentIndex + 1);
-      selectedOption(null);
+      setSelectedOption(null);
     } else {
-      console.log("Quiz completed");
+      setCompleted(true);
     }
   };
 
@@ -72,14 +74,12 @@ function ArtQuestions() {
     setSelectedOption(option);
     if (option === ArtQuestions[currentIndex].correct_answer) {
       setScore(score + 1);
-      handleNextQuestion()
-    }
-    else{
-    handleNextQuestion()
+      setTimeout(handleNextQuestion, 2000);
+      setIsCorret(true);
+    } else {
+      setTimeout(handleNextQuestion, 2000);
     }
   };
-
-  
 
   return (
     <div>
@@ -89,26 +89,47 @@ function ArtQuestions() {
         ) : (
           <>
             <div className="up">
-              <div className="timer">ggg</div>
-              Score: {score}
+              {/* <div className="timer">ggg</div> */}
+              <div className="score">Score: {score}</div> 
               <div className="number">
                 {currentIndex + 1}/{ArtQuestions.length}
               </div>
             </div>
 
             <div className="container">
-              <p>{ArtQuestions[currentIndex].question}</p>
-              <div className="options">
-                {options.map((option, index) => (
-                  <p onClick={() => handleOptionClick(option)} key={index}>
-                    {option}
-                  </p>
-                  
-                ))}
-              </div>
-              <button className="next" onClick={handleNextQuestion}>
-                Next
-              </button>
+              {!completed ? (
+                <>
+                  <p>{ArtQuestions[currentIndex].question}</p>
+                  <div className="options">
+                    {options.map((option, index) => (
+                      <p
+                        className={`${
+                          selectedOption
+                            ? option ===
+                              ArtQuestions[currentIndex].correct_answer
+                              ? "correct"
+                              : option === selectedOption
+                              ? "wrong"
+                              : ""
+                            : ""
+                        }`}
+                        onClick={() => handleOptionClick(option)}
+                        key={index}
+                      >
+                        {option}
+                      </p>
+                    ))}
+                  </div>
+                  <button className="next" onClick={handleNextQuestion}>
+                    Next
+                  </button>
+                </>
+              ) : (
+                <div className="completed">
+                  <p>Quiz completed, you score {score}</p>
+                  <button className="next"> Return to home</button>
+                </div>
+              )}
             </div>
           </>
         )}

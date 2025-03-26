@@ -15,6 +15,7 @@
     padding: 16px;
     gap: 16px;
     border-radius: 16px;
+    width: 300px;
   }
   .category{
     /* display: flex; */
@@ -26,3 +27,21 @@
     /* width: 200px; */
     border-radius: 16px;
   }
+
+
+  /* Responsiveness */
+@media screen and (max-width : 620px) {
+    .category{
+      grid-template-columns: 1fr;
+      margin-left: 100px;
+    }
+    .cats{
+      width: 300px;
+    }
+}
+
+@media screen and (max-width:400px) {
+  .category{
+    margin-left: 20px;
+  }
+}

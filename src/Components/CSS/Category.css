@@ -1,41 +1,74 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+}
+.container p {
+  font-size: 22px;
+  width: 500px;
+  text-align: center;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.options p {
+  font-size: 16px;
+  border: 1px solid gray;
+  padding: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.next {
+  padding: 8px 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 16px;
+  background-color: #283048;
+  color: white;
+  border: none;
+  box-shadow: 2px 3px #859398;
+}
+.up {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.completed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.correct {
+  background-color: rgb(133, 214, 133);
+}
+.wrong {
+  background-color: rgb(226, 115, 115);
+}
+
+.timer, .score, .number{
     background-color: white;
-    padding: 20px;
-    border-radius: 16px;
-}
-.container p{
-    font-size: 22px;
-    width: 500px;
-    text-align: center;
-}
-.options{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-.options p{
-    font-size: 16px;
-    border: 1px solid gray;
-    padding: 16px;
+    padding: 8px;
     border-radius: 8px;
 }
-.next{
-    padding: 8px 30px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 16px;
-    background-color: #283048;
-    color: white;
-    border: none;
-    box-shadow: 2px 3px #859398;
-}
-.up{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+
+/* Responsiveness */
+@media screen and (max-width : 620px) {
+    
+    .container p{
+        width: 250px;
+    }
+    .up{
+       
+    }
 }

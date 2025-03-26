@@ -86,8 +86,8 @@ function ScienseQuestions() {
       ) : (
         <>
           <div className="up">
-            <div className="timer">ggg</div>
-            Score: {score}
+            {/* <div className="timer">ggg</div> */}
+            <div className="score">Score: {score}</div> 
             <div className="number">
               {currentIndex + 1}/{questions.length}
             </div>
@@ -99,21 +99,32 @@ function ScienseQuestions() {
                 <p>{questions[currentIndex].question}</p>
                 <div className="options">
                   {options.map((option, index) => (
-                    <p onClick={() => handleOptionClick(option)} key={index}>
+                    <p
+                      className={`${
+                        selectedOption
+                          ? option === questions[currentIndex].correct_answer
+                            ? "correct"
+                            : option === selectedOption
+                            ? "wrong"
+                            : ""
+                          : ""
+                      }`}
+                      onClick={() => handleOptionClick(option)}
+                      key={index}
+                    >
                       {option}
                     </p>
                   ))}
                 </div>
                 <button className="next" onClick={handleNextQuestion}>
-                    Next
+                  Next
                 </button>
               </>
             ) : (
-                <div>
-                    <p>Completed your score is {score}</p>
-                    <button className="next">Return home</button>
-                </div>
-              
+              <div className="completed">
+                <p>Quiz completed, you score {score}</p>
+                <button className="next">Return to home</button>
+              </div>
             )}
           </div>
         </>

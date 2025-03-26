@@ -22,3 +22,25 @@
     color: white;
     cursor: pointer;
   }
+
+
+  @media screen and (max-width : 620px){
+    .hero{
+      gap: 200px;
+    }
+  }
+
+  
+@media screen and (max-width:400px) {
+  .hero{
+    gap: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .home{
+    font-size: 16px;
+  }
+  .logo{
+    font-size: 20px;
+  }
+}
