@@ -9,7 +9,10 @@ export default function Nav() {
         <div className="logo">
           <span className="span">Quiz</span>Realm
         </div>
-        <Link to="/"><p className="home">Home</p></Link>
+        {/* <Link to="/">
+          <p className="home">Home</p>
+        </Link> */}
+        <p className="home">Home</p>
       </div>
     </div>
   );

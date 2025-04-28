@@ -1,5 +1,6 @@
 import React from "react";
 import "../Components/CSS/main.css";
+import { Link } from "react-router-dom";
 
 function Main({ setCatId }) {
   const Categories = [
@@ -42,6 +43,16 @@ function Main({ setCatId }) {
             <h2>{cat.category}</h2>
             <p>Level: {cat.Level}</p>
             <p>Type: {cat.Type}</p>
+            {/* <button
+              className="takeQuiz"
+              onClick={() => {
+                console.log(cat.id);
+                setCatId(cat.id);
+              }}
+            >
+              Take Quiz
+            </button> */}
+            <Link to={"/quiz"}>
             <button
               className="takeQuiz"
               onClick={() => {
@@ -51,6 +62,7 @@ function Main({ setCatId }) {
             >
               Take Quiz
             </button>
+            </Link>
           </div>
         ))}
       </div>

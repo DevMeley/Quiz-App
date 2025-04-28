@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 import Category from './Category';
-import { data } from 'react-router-dom';
+import { BrowserRouter, data, Route, Routes } from 'react-router-dom';
 import Main from './Main';
 
 function Home() {
@@ -10,10 +10,14 @@ function Home() {
   return (
     <div>
         <div className="body">
-        {catId ? 
-          <Category catId={catId} /> : 
-          <Main setCatId={setCatId} />
-        }
+        <BrowserRouter>
+          <Routes>
+          {catId ? 
+            <Route path='/quiz' element={<Category catId={catId} />}/> : 
+            <Route path='/' element={<Main setCatId={setCatId} />}/>
+          }
+          </Routes>
+        </BrowserRouter>
         </div>
     </div>
   )
