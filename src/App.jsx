@@ -4,39 +4,41 @@ import Footer from "./Components/Footer";
 import Home from "./Components/Home";
 import NoPage from "./Components/NoPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React from 'react'
+import React from "react";
 import { useState } from "react";
-import Category from './Components/Category';
-import Main from "./Components/Main";
-
+import Category from "./Components/Category";
+import Main from "./Components/Mainn";
 
 function App() {
-
   const [catId, setCatId] = useState("");
 
   return (
     <>
-      <Nav />
-      <div className="body">
-        <BrowserRouter>
+      <BrowserRouter>
+        <Nav />
+        <div className="body">
           <Routes>
-            <Route path='/quiz' element={<Category catId={catId} />}/> 
-            <Route path='/' element={<Main setCatId={setCatId} />}/>
+            <Route path="/quiz" element={<Category catId={catId} />} />
+            <Route path="/" element={<Main setCatId={setCatId} />} />
           </Routes>
-        </BrowserRouter>
         </div>
-      <Footer />
+        <Footer />
+      </BrowserRouter>
     </>
   );
-  
-  {/* <Home /> */}
-  {/* <BrowserRouter>
+
+  {
+    /* <Home /> */
+  }
+  {
+    /* <BrowserRouter>
     <Routes>
     <Route path="/" element={<Home />} />
     <Route path="*" element={<NoPage />} />
     
     </Routes>
-  </BrowserRouter> */}
+  </BrowserRouter> */
+  }
 }
 
 export default App;

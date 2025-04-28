@@ -1,34 +1,36 @@
 import React from "react";
 import "../Components/CSS/main.css";
 import { Link } from "react-router-dom";
+import download10 from "../assets/download (1).jpeg"
+import download11 from "../assets/download.jpeg"
 
 function Main({ setCatId }) {
   const Categories = [
     {
       id: "1",
       category: "Science ",
-      image: "public/download.jpeg",
+      image: download10,
       Level: "medium",
       Type: "Multiple Choice",
     },
     {
       id: "2",
       category: "Art",
-      image: "public/download (1).jpeg",
+      image: download11,
       Level: "medium",
       Type: "Multiple Choice",
     },
     {
       id: "3",
       category: "History",
-      image: "public/download.jpeg",
+      image: download11,
       Level: "medium",
       Type: "Multiple Choice",
     },
     {
       id: "4",
       category: "Technology",
-      image: "public/download.jpeg",
+      image: download10,
       Level: "medium",
       Type: "Multiple Choice",
     },

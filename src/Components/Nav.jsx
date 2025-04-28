@@ -1,8 +1,9 @@
 import React from "react";
 import "../Components/CSS/Nav.css";
-import { Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Nav() {
+  const navigate = useNavigate()
   return (
     <div>
       <div className="hero">
@@ -12,7 +13,7 @@ export default function Nav() {
         {/* <Link to="/">
           <p className="home">Home</p>
         </Link> */}
-        <p className="home">Home</p>
+        <p onClick={()=>navigate("/")} className="home">Home</p>
       </div>
     </div>
   );
