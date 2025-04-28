@@ -125,7 +125,8 @@ function TechQuestion() {
               ) : (
                 <div className="completed">
                   <p>Quiz completed, you score {score}</p>
-                  <button className="next"> Return to home</button>
+                  <Link to="/"><button className="next">Return to home</button></Link>
+                  {/* <button className="next"> Return to home</button> */}
                 </div>
               )}
             </div>
