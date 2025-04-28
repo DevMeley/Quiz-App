@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoadingState from "./LoadingState";
+import { Link } from "react-router-dom";
 
 const URL3 = "https://opentdb.com/api.php?amount=10&category=23";
 
@@ -125,8 +126,8 @@ function HistoryQuestions() {
               ) : (
                 <div className="completed">
                   <p>Quiz completed, you score {score}</p>
-                  {/* <Link to="/"><button className="next">Return to home</button></Link> */}
-                  <button className="next">Return to home</button>
+                  <Link to="/"><button className="next">Return to home</button></Link>
+                  {/* <button className="next">Return to home</button> */}
                 </div>
               )}
             </div>
