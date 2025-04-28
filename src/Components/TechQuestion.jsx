@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import LoadingState from "./LoadingState";
+import { Link } from "react-router-dom";
 
 const URL4 = "https://opentdb.com/api.php?amount=10&category=18";
 
